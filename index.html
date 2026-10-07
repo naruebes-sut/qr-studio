@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="QR Studio — a fast, beautiful QR code generator.">
+  <title>QR Studio — QR Code Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="background-glow glow-one"></div>
+  <div class="background-glow glow-two"></div>
+
+  <main class="app">
+    <header class="topbar">
+      <a class="brand" href="#">
+        <span class="brand-mark">⌁</span>
+        <span>QR Studio</span>
+      </a>
+      <span class="badge">Free · No signup</span>
+    </header>
+
+    <section class="hero">
+      <p class="eyebrow">SIMPLE. FAST. PRIVATE.</p>
+      <h1>Turn anything into a <span>QR code.</span></h1>
+      <p class="subtitle">Create a clean, high-quality QR code in seconds. Everything happens in your browser.</p>
+    </section>
+
+    <section class="workspace">
+      <div class="panel editor-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="panel-kicker">CONTENT</p>
+            <h2>Your QR code</h2>
+          </div>
+          <span class="step">01</span>
+        </div>
+
+        <label for="qrText">Text or URL</label>
+        <div class="input-wrap">
+          <textarea id="qrText" rows="5" placeholder="https://example.com">https://example.com</textarea>
+          <button id="clearBtn" class="clear-btn" type="button" aria-label="Clear input">×</button>
+        </div>
+
+        <div class="options">
+          <div class="option">
+            <label for="size">Size</label>
+            <select id="size">
+              <option value="180">180 × 180</option>
+              <option value="256" selected>256 × 256</option>
+              <option value="320">320 × 320</option>
+              <option value="512">512 × 512</option>
+            </select>
+          </div>
+          <div class="option">
+            <label for="errorLevel">Error correction</label>
+            <select id="errorLevel">
+              <option value="L">Low</option>
+              <option value="M" selected>Medium</option>
+              <option value="Q">Quartile</option>
+              <option value="H">High</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="color-row">
+          <div>
+            <label for="foreground">Foreground</label>
+            <div class="color-input">
+              <input id="foreground" type="color" value="#111827">
+              <span id="foregroundHex">#111827</span>
+            </div>
+          </div>
+          <div>
+            <label for="background">Background</label>
+            <div class="color-input">
+              <input id="background" type="color" value="#ffffff">
+              <span id="backgroundHex">#FFFFFF</span>
+            </div>
+          </div>
+        </div>
+
+        <button id="generateBtn" class="primary-btn" type="button">
+          <span>Generate QR code</span>
+          <span class="arrow">→</span>
+        </button>
+      </div>
+
+      <div class="panel preview-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="panel-kicker">PREVIEW</p>
+            <h2>Ready to scan</h2>
+          </div>
+          <span class="live"><i></i> Live</span>
+        </div>
+
+        <div class="qr-stage">
+          <div id="qrCode" class="qr-code" aria-label="Generated QR code"></div>
+          <div id="emptyState" class="empty-state">
+            <div class="empty-icon">⌁</div>
+            <p>Enter content and generate your QR code.</p>
+          </div>
+        </div>
+
+        <div class="preview-meta">
+          <div>
+            <span>FORMAT</span>
+            <strong>PNG</strong>
+          </div>
+          <div>
+            <span>TYPE</span>
+            <strong>QR Code</strong>
+          </div>
+          <div>
+            <span>STATUS</span>
+            <strong id="statusText">Ready</strong>
+          </div>
+        </div>
+
+        <button id="downloadBtn" class="secondary-btn" type="button" disabled>
+          <span>↓</span> Download PNG
+        </button>
+      </div>
+    </section>
+
+    <footer>
+      <span>QR Studio</span>
+      <span>Generated locally in your browser · Your content is never uploaded.</span>
+    </footer>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
