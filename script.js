@@ -59,10 +59,26 @@ function downloadPNG() {
   const image = qrCode.querySelector("img");
 
   if (canvas) {
-    saveDataURL(canvas.toDataURL("image/png"));
+    downloadWithWhiteBorder(canvas);
   } else if (image) {
-    saveDataURL(image.src);
+    const source = new Image();
+    source.onload = () => downloadWithWhiteBorder(source);
+    source.src = image.src;
   }
+}
+
+function downloadWithWhiteBorder(source) {
+  const border = 32;
+  const output = document.createElement("canvas");
+  output.width = source.width + border * 2;
+  output.height = source.height + border * 2;
+
+  const context = output.getContext("2d");
+  context.fillStyle = "#ffffff";
+  context.fillRect(0, 0, output.width, output.height);
+  context.drawImage(source, border, border);
+
+  saveDataURL(output.toDataURL("image/png"));
 }
 
 function saveDataURL(dataURL) {
